@@ -134,7 +134,7 @@
         
         <p class="px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-6 mb-2">Academics</p>
         <a href="#" onclick="showPage('page-courses')" class="sidebar-link flex items-center gap-3 px-6 py-3 text-slate-500 hover:bg-slate-50 font-semibold text-sm">
-            <span class="material-symbols-outlined text-[20px]">school</span> Popular Courses
+            <span class="material-symbols-outlined text-[20px]">school</span> PYQ Bundles
         </a>
         <a href="#" onclick="showPage('page-case-studies')" class="sidebar-link flex items-center gap-3 px-6 py-3 text-slate-500 hover:bg-slate-50 font-semibold text-sm">
             <span class="material-symbols-outlined text-[20px]">auto_stories</span> Case Studies
@@ -143,7 +143,7 @@
             <span class="material-symbols-outlined text-[20px]">quiz</span> MCQ Bundles
         </a>
         <a href="#" onclick="showPage('page-webinars')" class="sidebar-link flex items-center gap-3 px-6 py-3 text-slate-500 hover:bg-slate-50 font-semibold text-sm">
-            <span class="material-symbols-outlined text-[20px]">podcasts</span> Webinars
+            <span class="material-symbols-outlined text-[20px]">podcasts</span> Live Lecture
         </a>
 
         <p class="px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-6 mb-2">Website Content</p>
@@ -468,18 +468,18 @@
             </div>
         </div>
 
-        <!-- PAGE: Courses -->
+        <!-- PAGE: PYQs -->
         <div id="page-courses" class="page">
-             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">Academic Courses</h2>
+             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">PYQ Bundles</h2>
             <div class="glass-card p-6 mb-8 relative overflow-hidden">
                 <div class="absolute right-0 top-0 w-32 h-32 bg-indigo-50 rounded-bl-full opacity-50 -z-10"></div>
-                <h3 id="course-form-title" class="font-extrabold text-lg mb-6 text-slate-800 relative z-10">Create New Course</h3>
+                <h3 id="course-form-title" class="font-extrabold text-lg mb-6 text-slate-800 relative z-10">Create New PYQ Bundle</h3>
                 <form id="form-course" class="space-y-5 relative z-10">
                     <input type="hidden" id="cEditKey">
                     <input type="hidden" id="cCurrentImageURL">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Course Title</label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">PYQ Title</label>
                             <input type="text" id="cTitle" placeholder="e.g., CIA Part 1" required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm">
                         </div>
                         <div>
@@ -495,27 +495,27 @@
                             <input type="text" id="cStudents" placeholder="e.g., 500+" required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Course Description</label>
-                            <textarea id="cDescription" rows="4" placeholder="Enter complete course details and curriculum..." required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm"></textarea>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">PYQ Description</label>
+                            <textarea id="cDescription" rows="4" placeholder="Enter complete details about this PYQ set..." required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm"></textarea>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Course Thumbnail</label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Thumbnail Image</label>
                             <p id="cFileHelp" class="text-[10px] text-slate-400 mb-2 font-medium">Leave empty if not changing.</p>
                             <input type="file" id="cFile" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-bold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                         </div>
                         <div class="md:col-span-2 flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 w-fit">
                             <input type="checkbox" id="cPopular" class="w-5 h-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
-                            <label for="cPopular" class="font-bold text-sm text-slate-700 cursor-pointer">Mark as Popular Course (Shows on Home)</label>
+                            <label for="cPopular" class="font-bold text-sm text-slate-700 cursor-pointer">Mark as Popular (Shows on Home)</label>
                         </div>
                     </div>
                     <div class="flex gap-3 pt-2">
                          <button type="button" id="btn-course-cancel" onclick="resetCourseForm()" class="hidden bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-8 rounded-xl transition-all">Cancel</button>
-                        <button type="submit" id="btn-course" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-indigo-600/20"><span id="btn-course-text">Publish Course</span></button>
+                        <button type="submit" id="btn-course" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-indigo-600/20"><span id="btn-course-text">Publish PYQ</span></button>
                     </div>
                 </form>
             </div>
             <div class="glass-card p-6">
-                <h3 class="font-extrabold text-lg mb-6 text-slate-800">Course Directory</h3>
+                <h3 class="font-extrabold text-lg mb-6 text-slate-800">PYQ Directory</h3>
                 <div id="course-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
         </div>
@@ -602,15 +602,24 @@
             </div>
         </div>
 
-        <!-- PAGE: Webinars -->
+        <!-- PAGE: Live Lecture -->
         <div id="page-webinars" class="page">
-            <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">Live Webinars</h2>
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">Live Lecture & Schedule</h2>
+            
+            <div class="glass-card p-6 mb-8 text-center">
+                <h3 class="font-extrabold text-lg mb-2 text-slate-800">Live Stream Control</h3>
+                <p class="text-xs text-slate-500 mb-4">Start or stop the WebRTC stream for all users.</p>
+                <button id="btn-go-live" onclick="toggleLiveStream()" class="px-8 py-3 rounded-xl font-extrabold text-white transition-all shadow-lg text-sm w-full max-w-xs">
+                    Loading Status...
+                </button>
+            </div>
+
              <div class="glass-card p-6 mb-8">
-                <h3 id="webinar-form-title" class="font-extrabold text-lg mb-4 text-slate-800">Add Session</h3>
+                <h3 id="webinar-form-title" class="font-extrabold text-lg mb-4 text-slate-800">Add Schedule Entry</h3>
                 <form id="form-webinar" class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <input type="hidden" id="wEditKey">
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Webinar Title</label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">Topic / Title</label>
                         <input type="text" id="wTitle" placeholder="e.g., Exam Prep Strategy" required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm">
                     </div>
                     <div>
@@ -618,17 +627,17 @@
                         <input type="text" id="wDateInfo" placeholder="e.g., 25 Oct, 7:00 PM" required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">YouTube Link</label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wide mb-1">YouTube Link (for past lectures)</label>
                         <input type="url" id="wYoutube" placeholder="https://youtube.com/..." required class="w-full bg-slate-50 p-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-sm">
                     </div>
                     <div class="md:col-span-2 flex gap-3 pt-2">
                         <button type="button" id="btn-webinar-cancel" onclick="resetWebinarForm()" class="hidden bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-8 rounded-xl transition-all">Cancel</button>
-                        <button type="submit" id="btn-webinar" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-indigo-600/20"><span id="btn-webinar-text">Publish Webinar</span></button>
+                        <button type="submit" id="btn-webinar" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-indigo-600/20"><span id="btn-webinar-text">Add to Schedule</span></button>
                     </div>
                 </form>
             </div>
             <div class="glass-card p-6">
-                <h3 class="font-extrabold text-lg mb-4 text-slate-800">Scheduled Sessions</h3>
+                <h3 class="font-extrabold text-lg mb-4 text-slate-800">Today's Schedule</h3>
                 <div id="webinar-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
         </div>
@@ -692,7 +701,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-    import { getDatabase, ref, push, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, push, set, onValue, remove, update, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
     // --- FIREBASE CONFIG ---
     const firebaseConfig = {
@@ -713,6 +722,7 @@
     // --- GLOBAL STATE ---
     let currentMcqBundleKey = null;
     let allUsersData = {};
+    let isStreamLive = false;
 
     // View Image Modal
     window.openImageModal = (url) => {
@@ -858,10 +868,10 @@
             'page-blogs': 'Blog Links Management',
             'page-slider': 'Hero Slider Management',
             'page-testimonials': 'Topper Reviews',
-            'page-courses': 'Course Directory',
+            'page-courses': 'PYQ Bundle Directory',
             'page-mcq-bundles': 'MCQ Bundles',
             'page-mcq-questions': 'Question Editor',
-            'page-webinars': 'Live Webinars',
+            'page-webinars': 'Live Lecture & Schedule',
             'page-settings': 'Site Settings'
         };
         document.getElementById('top-header-title').textContent = titles[pageId] || 'Admin Panel';
@@ -971,7 +981,7 @@
         resetTestimonialForm(); btn.disabled = false;
     });
 
-    // Courses
+    // PYQs (formerly Courses)
     document.getElementById('form-course').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('btn-course');
@@ -995,7 +1005,7 @@
             description: document.getElementById('cDescription').value,
             isPopular: document.getElementById('cPopular').checked, imageURL: imageUrl
         };
-        const path = 'content/courses' + (editKey ? `/${editKey}` : '');
+        const path = 'content/courses' + (editKey ? `/${editKey}` : ''); // KEEPING DB PATH SAME
         await (editKey ? set(ref(db, path), data) : push(ref(db, 'content/courses'), data));
         resetCourseForm(); btn.disabled = false;
     });
@@ -1031,7 +1041,7 @@
         resetMcqQuestionForm();
     });
     
-    // Webinars
+    // Schedule (formerly Webinars)
     document.getElementById('form-webinar').addEventListener('submit', async (e) => {
         e.preventDefault();
         const editKey = document.getElementById('wEditKey').value;
@@ -1197,7 +1207,7 @@
             </div>
         </div>`));
 
-    // Courses List
+    // PYQs List (formerly Courses)
     onValue(ref(db, 'content/courses'), (s) => render('course-list-container', s.val(), (key, v) => `
         <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm relative">
             ${v.isPopular ? '<div class="absolute top-2 left-2 bg-indigo-600 text-white text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-md">Popular</div>' : ''}
@@ -1250,7 +1260,7 @@
             </div>`));
     }
 
-    // Webinars List
+    // Schedule List (formerly Webinars)
     onValue(ref(db, 'content/webinars'), (s) => render('webinar-list-container', s.val(), (key, v) => `
          <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm flex justify-between items-center gap-3">
             <div><h4 class="font-bold text-slate-800">${v.title}</h4><p class="text-[11px] font-bold text-indigo-600 mt-0.5">${v.dateInfo}</p></div>
@@ -1280,6 +1290,26 @@
             </div>
         </div>`));
 
+    // --- LIVE STREAM CONTROL ---
+    window.toggleLiveStream = async () => {
+        const btn = document.getElementById('btn-go-live');
+        btn.disabled = true;
+        // The isStreamLive variable is updated by the onValue listener
+        await set(ref(db, 'content/liveStream/isLive'), !isStreamLive);
+        btn.disabled = false;
+    };
+
+    onValue(ref(db, 'content/liveStream/isLive'), (snapshot) => {
+        isStreamLive = snapshot.val() === true;
+        const btn = document.getElementById('btn-go-live');
+        if (isStreamLive) {
+            btn.innerHTML = '<span class="flex items-center gap-2"><span class="material-symbols-outlined">stop_circle</span> Stop Stream</span>';
+            btn.className = 'px-8 py-3 rounded-xl font-extrabold text-white transition-all shadow-lg text-sm w-full max-w-xs bg-red-600 hover:bg-red-700';
+        } else {
+            btn.innerHTML = '<span class="flex items-center gap-2"><span class="material-symbols-outlined">podcasts</span> Go Live Now</span>';
+            btn.className = 'px-8 py-3 rounded-xl font-extrabold text-white transition-all shadow-lg text-sm w-full max-w-xs bg-emerald-600 hover:bg-emerald-700';
+        }
+    });
 
     // --- FORM EDIT & RESET LOGIC ---
     const setupEdit = (tId, title, btnId, btnTxt, cancelId) => { document.getElementById(tId).textContent=title; document.getElementById(btnId).textContent=btnTxt; document.getElementById(cancelId).classList.remove('hidden'); }
@@ -1294,8 +1324,8 @@
     window.resetTestimonialForm = () => { resetForm('form-testimonial','testimonial-form-title',"Add Testimonial",'btn-testimonial-text',"Save Review",'btn-testimonial-cancel'); document.getElementById('tCurrentImageURL').value=''; document.getElementById('tFile').required=true; document.getElementById('tFileHelp').classList.add('hidden'); }
     window.editTestimonial = (k, d) => { setupEdit('testimonial-form-title','Edit Review','btn-testimonial-text','Update Review','btn-testimonial-cancel'); document.getElementById('tEditKey').value=k; document.getElementById('tName').value=d.name; document.getElementById('tReview').value=d.review; document.getElementById('tCurrentImageURL').value=d.imageURL; document.getElementById('tFile').required=false; document.getElementById('tFileHelp').classList.remove('hidden'); }
 
-    window.resetCourseForm = () => { resetForm('form-course','course-form-title',"Create New Course",'btn-course-text',"Publish Course",'btn-course-cancel'); document.getElementById('cCurrentImageURL').value=''; document.getElementById('cFile').required=true; document.getElementById('cFileHelp').classList.add('hidden'); }
-    window.editCourse = (k, d) => { setupEdit('course-form-title','Edit Course','btn-course-text','Update Course','btn-course-cancel'); document.getElementById('cEditKey').value=k; document.getElementById('cTitle').value=d.title; document.getElementById('cCategory').value=d.category; document.getElementById('cDuration').value=d.duration; document.getElementById('cStudents').value=d.students; document.getElementById('cDescription').value=d.description || ''; document.getElementById('cPopular').checked=d.isPopular; document.getElementById('cCurrentImageURL').value=d.imageURL; document.getElementById('cFile').required=false; document.getElementById('cFileHelp').classList.remove('hidden'); }
+    window.resetCourseForm = () => { resetForm('form-course','course-form-title',"Create New PYQ Bundle",'btn-course-text',"Publish PYQ",'btn-course-cancel'); document.getElementById('cCurrentImageURL').value=''; document.getElementById('cFile').required=true; document.getElementById('cFileHelp').classList.add('hidden'); }
+    window.editCourse = (k, d) => { setupEdit('course-form-title','Edit PYQ Bundle','btn-course-text','Update PYQ','btn-course-cancel'); document.getElementById('cEditKey').value=k; document.getElementById('cTitle').value=d.title; document.getElementById('cCategory').value=d.category; document.getElementById('cDuration').value=d.duration; document.getElementById('cStudents').value=d.students; document.getElementById('cDescription').value=d.description || ''; document.getElementById('cPopular').checked=d.isPopular; document.getElementById('cCurrentImageURL').value=d.imageURL; document.getElementById('cFile').required=false; document.getElementById('cFileHelp').classList.remove('hidden'); }
     
     window.resetMcqBundleForm = () => resetForm('form-mcq-bundle','mcq-bundle-form-title',"Create Bundle",'btn-mcq-bundle-text',"Save Bundle",'btn-mcq-bundle-cancel');
     window.editMcqBundle = (k, d) => { setupEdit('mcq-bundle-form-title','Edit Bundle','btn-mcq-bundle-text','Update Bundle','btn-mcq-bundle-cancel'); document.getElementById('mEditKey').value=k; document.getElementById('mTitle').value=d.title; document.getElementById('mTopic').value=d.topic; document.getElementById('mTotal').value=d.totalQs; document.getElementById('mIcon').value=d.icon; }
@@ -1303,8 +1333,8 @@
     window.resetMcqQuestionForm = () => resetForm('form-mcq-question','mcq-question-form-title',"Add Question",'btn-mcq-question-text',"Save Question",'btn-mcq-question-cancel');
     window.editMcqQuestion = (k, d) => { setupEdit('mcq-question-form-title','Edit Question','btn-mcq-question-text','Update Question','btn-mcq-question-cancel'); document.getElementById('qEditKey').value=k; document.getElementById('qText').value=d.question; document.getElementById('qOptA').value=d.options.a; document.getElementById('qOptB').value=d.options.b; document.getElementById('qOptC').value=d.options.c; document.getElementById('qOptD').value=d.options.d; document.querySelector(`input[name="correctAnswer"][value="${d.correctAnswer}"]`).checked=true; }
 
-    window.resetWebinarForm = () => resetForm('form-webinar','webinar-form-title',"Add Session",'btn-webinar-text',"Publish Webinar",'btn-webinar-cancel');
-    window.editWebinar = (k, d) => { setupEdit('webinar-form-title','Edit Session','btn-webinar-text','Update Webinar','btn-webinar-cancel'); document.getElementById('wEditKey').value=k; document.getElementById('wTitle').value=d.title; document.getElementById('wDateInfo').value=d.dateInfo; document.getElementById('wYoutube').value=d.youtubeLink; }
+    window.resetWebinarForm = () => resetForm('form-webinar','webinar-form-title',"Add Schedule Entry",'btn-webinar-text',"Add to Schedule",'btn-webinar-cancel');
+    window.editWebinar = (k, d) => { setupEdit('webinar-form-title','Edit Schedule Entry','btn-webinar-text','Update Schedule','btn-webinar-cancel'); document.getElementById('wEditKey').value=k; document.getElementById('wTitle').value=d.title; document.getElementById('wDateInfo').value=d.dateInfo; document.getElementById('wYoutube').value=d.youtubeLink; }
 
     window.resetWhyForm = () => resetForm('form-why','why-form-title',"Add Card",'btn-why-text',"Save Point",'btn-why-cancel');
     window.editWhyItem = (k, d) => { setupEdit('why-form-title','Edit Point','btn-why-text','Update Point','btn-why-cancel'); document.getElementById('whyEditKey').value=k; document.getElementById('whyHeadline').value=d.headline; document.getElementById('whyDetails').value=d.details; }
