@@ -168,6 +168,33 @@
         </div>
     </div>
 
+    <!-- Parent Login Modal -->
+    <div id="parentLoginModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 relative animate-fade-in-up">
+            <button onclick="closeParentLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><span class="material-symbols-outlined">close</span></button>
+            <div class="text-center mb-5">
+                <div class="mx-auto w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-2">
+                    <span class="material-symbols-outlined text-2xl">family_restroom</span>
+                </div>
+                <h2 class="text-xl font-extrabold text-primary font-headline">Parent Portal</h2>
+                <p class="text-xs text-slate-500 mt-1">Login to monitor student progress.</p>
+            </div>
+            <form id="parent-login-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Student Registered Mobile</label>
+                    <input type="tel" id="parentStudentMobile" placeholder="e.g., 9876543210" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-secondary text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Parent PIN / Password</label>
+                    <input type="password" id="parentPin" placeholder="Enter PIN" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:ring-2 focus:ring-secondary text-sm">
+                </div>
+                <button type="button" onclick="alert('Parent login portal access will be enabled shortly.'); closeParentLoginModal();" class="w-full bg-primary text-white font-extrabold py-3 rounded-xl shadow-lg hover:bg-primary/90 transition-all text-sm">
+                    Access Portal
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- PREMIUM LOCK MODAL -->
     <div id="premiumLockModal" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 text-center relative overflow-hidden chat-animate">
@@ -292,10 +319,10 @@
                 </div>
             </section>
 
-            <!-- Popular Courses -->
+            <!-- Popular PYQs -->
             <section class="mb-8">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="font-headline text-2xl font-extrabold text-primary tracking-tight">Popular Courses</h2>
+                    <h2 class="font-headline text-2xl font-extrabold text-primary tracking-tight">Popular PYQs</h2>
                     <button class="text-primary font-bold text-sm flex items-center gap-1 group px-2 py-1 rounded-md hover:bg-slate-200 transition-colors" onclick="showPage('coursesPage')">
                         View All <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </button>
@@ -390,13 +417,42 @@
 
         <!-- OTHER PAGES -->
         <div id="coursesPage" class="page">
-            <div class="mb-4 text-center md:text-left mt-2"><h1 class="font-headline text-3xl font-extrabold text-primary mb-1">Academic Programs</h1><p class="text-slate-600 text-xs max-w-lg">Find the perfect professional certification.</p></div>
+            <div class="mb-4 text-center md:text-left mt-2"><h1 class="font-headline text-3xl font-extrabold text-primary mb-1">Previous Year Questions</h1><p class="text-slate-600 text-xs max-w-lg">Practice with real exam questions and PYQs.</p></div>
             <div id="all-courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"></div>
         </div>
         
         <div id="webinarsPage" class="page">
-            <div class="mb-6 mt-2"><h1 class="font-headline text-3xl font-extrabold text-primary mb-1">Knowledge Sessions</h1></div>
-             <section class="mb-8"><div id="past-webinars-list" class="space-y-3"></div></section>
+            <div class="mb-6 mt-2">
+                <h1 class="font-headline text-3xl font-extrabold text-primary mb-1">Live Lecture</h1>
+                <p class="text-slate-600 text-xs mt-1">Join the live session and view today's schedule.</p>
+            </div>
+            
+            <!-- WebRTC Live Video Card -->
+            <div class="mb-6 bg-slate-900 rounded-2xl overflow-hidden shadow-lg relative aspect-video border border-slate-800">
+                <video id="live-lecture-video" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+                <div id="live-offline-overlay" class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-slate-900 z-10">
+                    <span class="material-symbols-outlined text-5xl text-slate-600 mb-3">videocam_off</span>
+                    <h3 class="text-white font-bold text-lg">No Live Class Currently</h3>
+                    <p class="text-slate-400 text-xs mt-1">Please check the schedule below for upcoming sessions.</p>
+                </div>
+            </div>
+
+            <!-- Today's Schedule -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-secondary text-2xl">calendar_month</span>
+                    <h2 class="font-headline text-xl font-extrabold text-primary">Today's Schedule</h2>
+                </div>
+                <div id="today-schedule-list" class="space-y-3">
+                    <!-- Schedule injected via JS -->
+                </div>
+            </div>
+
+            <div class="mb-4 mt-8 flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400">history</span>
+                <h2 class="font-headline text-lg font-bold text-slate-700">Past Lectures</h2>
+            </div>
+            <section class="mb-8"><div id="past-webinars-list" class="space-y-3"></div></section>
         </div>
         
         <div id="mcqPage" class="page">
@@ -428,6 +484,9 @@
                 <p id="main-profile-mobile" class="text-slate-500 font-medium text-xs">9876543210</p>
             </div>
             <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden mb-4">
+                 <a href="#" onclick="openParentLoginModal()" class="flex items-center justify-between p-3.5 border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-3"><div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-800"><span class="material-symbols-outlined text-lg">family_restroom</span></div><span class="font-bold text-primary text-sm">Parent Login</span></div><span class="material-symbols-outlined text-slate-400 text-lg">chevron_right</span>
+                </a>
                  <a id="dynamic-fb-profile" href="#" target="_blank" class="flex items-center justify-between p-3.5 border-b border-slate-100 hover:bg-slate-50 transition-colors">
                     <div class="flex items-center gap-3"><div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-800"><span class="material-symbols-outlined text-lg">groups</span></div><span class="font-bold text-primary text-sm">Follow on Facebook</span></div><span class="material-symbols-outlined text-slate-400 text-lg">chevron_right</span>
                 </a>
@@ -446,7 +505,7 @@
         <div id="courseDetailsPage" class="page">
             <div class="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200 mt-2">
                 <button onclick="showPage('coursesPage')" class="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-primary shadow-sm"><span class="material-symbols-outlined text-sm">arrow_back</span></button>
-                <h1 class="font-headline text-2xl font-extrabold text-primary flex-1">Course Details</h1>
+                <h1 class="font-headline text-2xl font-extrabold text-primary flex-1">PYQ Details</h1>
             </div>
             <div id="course-details-container" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pb-6">
                 <!-- Dynamic Course Data loads here -->
@@ -484,8 +543,8 @@
     <!-- BottomNavBar -->
     <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pt-2 pb-5 bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-md">
         <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="homePage"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">Home</span></a>
-        <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="coursesPage"><span class="material-symbols-outlined text-[24px]">menu_book</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">Courses</span></a>
-        <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="webinarsPage"><span class="material-symbols-outlined text-[24px]">video_camera_front</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">Events</span></a>
+        <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="coursesPage"><span class="material-symbols-outlined text-[24px]">menu_book</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">PYQ</span></a>
+        <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="webinarsPage"><span class="material-symbols-outlined text-[24px]">video_camera_front</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">Live</span></a>
         <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="mcqPage"><span class="material-symbols-outlined text-[24px]">quiz</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">MCQs</span></a>
         <a href="#" class="bottom-nav-link flex flex-col items-center justify-center px-3 py-1.5 text-slate-500" data-page="profilePage"><span class="material-symbols-outlined text-[24px]">person</span><span class="text-[9px] font-bold uppercase tracking-widest mt-1">Profile</span></a>
     </nav>
@@ -551,6 +610,18 @@
 
         window.closeTestimonialModal = function() {
             const modal = document.getElementById('testimonialModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        window.openParentLoginModal = function() {
+            const modal = document.getElementById('parentLoginModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.closeParentLoginModal = function() {
+            const modal = document.getElementById('parentLoginModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         };
@@ -625,6 +696,28 @@
             premiumChatEndTime: 0,
             unlockedPackages: {}
         };
+
+        // Live WebRTC Stream Initialization Listener (Stub for Real WebRTC setup)
+        let peerConnection;
+        onValue(ref(db, 'content/liveStream'), (snapshot) => {
+            const val = snapshot.val();
+            const videoEl = document.getElementById('live-lecture-video');
+            const overlayEl = document.getElementById('live-offline-overlay');
+            
+            if(val && val.isLive) {
+                overlayEl.classList.add('hidden');
+                videoEl.classList.remove('hidden');
+                // Standard WebRTC logic initiation would begin here parsing RTCSessionDescription
+                // videoEl.srcObject = remoteStream;
+            } else {
+                overlayEl.classList.remove('hidden');
+                videoEl.classList.add('hidden');
+                if(peerConnection) {
+                    peerConnection.close();
+                    peerConnection = null;
+                }
+            }
+        });
 
         const IMGBB_API_KEY = "05536113a405563d7697475325a95f43";
         async function uploadImageToImgBB(file) {
@@ -1374,7 +1467,7 @@
             }
         });
 
-        // FIXED COURSES RENDER LOGIC
+        // FIXED PYQ DETAILS PAGE WITH DYNAMIC CONTAINER
         window.openCourseDetails = function(key) {
             if (!window.coursesData || !window.coursesData[key]) return;
             const course = window.coursesData[key];
@@ -1395,16 +1488,17 @@
                         </div>
                     </div>
                     
-                    <h3 class="font-bold text-slate-800 text-base mb-2">About this Program</h3>
+                    <h3 class="font-bold text-slate-800 text-base mb-2">About this PYQ Bundle</h3>
                     <div class="text-sm text-slate-600 leading-relaxed whitespace-pre-line mb-8 font-medium">${course.description || 'No description available.'}</div>
                     
-                    <a href="https://wa.me/919773464206?text=I%20am%20interested%20in%20the%20course:%20${encodeURIComponent(course.title)}" target="_blank" class="w-full block text-center bg-secondary text-white font-extrabold py-3.5 rounded-xl shadow-[0_4px_0_#0891b2] hover:translate-y-[2px] transition-all">Enquire Now on WhatsApp</a>
+                    <a href="https://wa.me/919773464206?text=I%20am%20interested%20in%20the%20PYQ:%20${encodeURIComponent(course.title)}" target="_blank" class="w-full block text-center bg-secondary text-white font-extrabold py-3.5 rounded-xl shadow-[0_4px_0_#0891b2] hover:translate-y-[2px] transition-all">Enquire Now on WhatsApp</a>
                 </div>
             `;
             document.getElementById('course-details-container').innerHTML = html;
             showPage('courseDetailsPage');
         };
 
+        // Keep DB ref intact (content/courses) to maintain admin sync, but display correctly to user.
         onValue(ref(db, 'content/courses'), (s) => {
             if (s.exists()) {
                 window.coursesData = s.val(); 
@@ -1427,6 +1521,32 @@
                 });
                 document.getElementById('home-popular-courses').innerHTML = ph;
                 document.getElementById('all-courses-grid').innerHTML = ah;
+            }
+        });
+
+        // Live Lectures / Webinars Display & Scheduling Logic
+        onValue(ref(db, 'content/webinars'), (s) => {
+            const pastContainer = document.getElementById('past-webinars-list');
+            const scheduleContainer = document.getElementById('today-schedule-list');
+            if (s.exists()) {
+                let sh = '', ph = '';
+                Object.entries(s.val()).forEach(([key, v]) => {
+                    const entryHtml = `
+                    <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm flex justify-between items-center gap-3 border-l-4 border-l-secondary">
+                        <div>
+                            <h4 class="font-bold text-slate-800">${v.title}</h4>
+                            <p class="text-xs font-bold text-secondary mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> ${v.dateInfo}</p>
+                        </div>
+                        <a href="${v.youtubeLink}" target="_blank" class="p-2 text-white bg-primary rounded-lg text-xs font-bold shadow-sm">View</a>
+                    </div>`;
+                    sh += entryHtml; // Rendering as schedule for the day
+                    ph += entryHtml; // Rendering past records placeholder if needed
+                });
+                scheduleContainer.innerHTML = sh;
+                pastContainer.innerHTML = ph;
+            } else {
+                scheduleContainer.innerHTML = '<p class="text-sm text-slate-500 py-4 bg-white rounded-xl border border-slate-200 shadow-sm text-center">No schedule for today.</p>';
+                pastContainer.innerHTML = '<p class="text-sm text-slate-500 py-4">Past lectures will appear here.</p>';
             }
         });
     </script>
